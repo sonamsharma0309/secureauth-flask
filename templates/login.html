@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Login | SecureAuth{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6 col-md-8">
+
+    <div class="auth-shell pop-in" data-tilt="true">
+      <!-- interactive glow layer -->
+      <div data-glow style="position:absolute; inset:0; border-radius:26px; opacity:0; transition:opacity .2s ease; pointer-events:none;"></div>
+
+      <div class="glass glow-border shine p-4 p-md-5">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div>
+            <h2 class="fw-bold mb-1">Welcome back</h2>
+            <p class="muted mb-0">Login to your secure workspace.</p>
+          </div>
+          <span class="chip"><span class="dot"></span> Session protected</span>
+        </div>
+
+        <form method="POST">
+          <div class="mb-3 input-wrap">
+            <label class="form-label">Email</label>
+
+            <!-- mail icon -->
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none">
+              <path d="M4 7.5v9A2.5 2.5 0 0 0 6.5 19h11A2.5 2.5 0 0 0 20 16.5v-9A2.5 2.5 0 0 0 17.5 5h-11A2.5 2.5 0 0 0 4 7.5Z" stroke="rgba(255,255,255,.8)" stroke-width="1.6"/>
+              <path d="M5.2 7.1 12 12.2l6.8-5.1" stroke="rgba(255,255,255,.8)" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+
+            <input class="form-control" type="email" name="email"
+                   value="{{ email or '' }}" placeholder="you@example.com" required>
+          </div>
+
+          <div class="mb-2 input-wrap">
+            <label class="form-label">Password</label>
+
+            <!-- lock icon -->
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none">
+              <path d="M7 11V8.6A5 5 0 0 1 12 3.8a5 5 0 0 1 5 4.8V11" stroke="rgba(255,255,255,.8)" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M6.5 11h11A2.5 2.5 0 0 1 20 13.5v4A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-4A2.5 2.5 0 0 1 6.5 11Z" stroke="rgba(255,255,255,.8)" stroke-width="1.6"/>
+            </svg>
+
+            <input id="pwd" class="form-control" type="password" name="password"
+                   placeholder="Your password" required>
+
+            <button type="button" class="toggle-btn" onclick="togglePwd('pwd', this)">Show</button>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="remember" id="remember">
+              <label class="form-check-label muted" for="remember">Keep me signed in</label>
+            </div>
+          </div>
+
+          <button class="btn btn-glow w-100 mt-4">
+            Login
+          </button>
+
+          <div class="text-center mt-3 muted">
+            New here?
+            <a class="link-light fw-semibold" href="{{ url_for('register') }}">Create an account</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function togglePwd(id, btn){
+    const el = document.getElementById(id);
+    if(el.type === "password"){ el.type = "text"; btn.innerText = "Hide"; }
+    else { el.type = "password"; btn.innerText = "Show"; }
+  }
+</script>
+{% endblock %}

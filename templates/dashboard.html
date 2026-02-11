@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | SecureAuth{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-9">
+    <div class="glass p-4 p-md-5 soft">
+      <h2 class="fw-bold mb-1">Dashboard</h2>
+      <p class="muted mb-4">You are signed in with a protected session (Flask-Login).</p>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="p-4 soft" style="background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.10);">
+            <div class="muted small">Signed in as</div>
+            <div class="fs-5 fw-semibold">{{ current_user.full_name }}</div>
+            <div class="muted">{{ current_user.email }}</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="p-4 soft" style="background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.10);">
+            <div class="muted small">Security</div>
+            <div class="fw-semibold">Encrypted credentials</div>
+            <div class="muted">Passwords are stored as salted hashes (not plain text).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <a class="btn btn-outline-warning soft" href="{{ url_for('logout') }}">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
